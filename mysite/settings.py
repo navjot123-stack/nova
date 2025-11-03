@@ -27,6 +27,10 @@ SECRET_KEY = 'django-insecure-rc^*w^w&6g9_(uvx#6s*bnt!w)l0rdi%!l7mv#y%uc&x%wo5pk
 DEBUG = True
 
 ALLOWED_HOSTS = ["nova-production-1e9e.up.railway.app","127.0.0.1","localhost"]
+CSRF_TRUSTED_ORIGINS = [
+    'https://nova-production-1e9e.up.railway.app',  # Replace with your frontend's URL
+    # Add any other trusted origins as needed
+]
 
 # FORM SUBMISSION
 # Comment out the following line and place your railway URL, and your production URL in the array.
