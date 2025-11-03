@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404
 def index(request):
     dd=products.objects.all()
-    itm=CartItem.objects.filter(user=request.user).count()
+    
     return render(request, 'index.html',{'dd':dd})
 
 def product_detail(request,id):
