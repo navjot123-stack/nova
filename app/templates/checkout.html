@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .checkout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .checkout-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        .form-section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #495057;
+            font-weight: 600;
+        }
+        .payment-method {
+            display: none;
+        }
+        .cart-summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .cart-total {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #28a745;
+        }
+        .btn-checkout {
+            background-color: #28a745;
+            border: none;
+            padding: 12px;
+            font-weight: 600;
+            width: 100%;
+        }
+        .btn-checkout:hover {
+            background-color: #218838;
+        }
+        /* Fix for visible toggle icon on light navbar */
+.navbar-light .navbar-toggler {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+    </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <h1 class="text-center mb-4">Checkout</h1>
+        
+        <div class="row">
+            <!-- Billing Details Form -->
+            <div class="col-md-8">
+                <div class="checkout-card">
+                    <h3 class="section-title">Billing Details</h3>
+                    <form id="checkout-form" method="post">
+                      {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="c_fname" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="c_fname" name="c_fname" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="c_lname" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="c_lname" name="c_lname" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="c_email_address" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="c_email_address" name="c_email_address" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="c_phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="c_phone" name="c_phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="c_country" class="form-label">Country</label>
+                            <select class="form-select" id="c_country" name="c_country" required>
+                                <option value="">Select Country</option>
+                                <option value="india">India</option>
+                                <option value="USA">United States</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="CA">Canada</option>
+                                <option value="AU">Australia</option>
+                                <option value="DE">Germany</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="c_address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="c_address" name="c_address" required>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="c_state_country" class="form-label">State/Province</label>
+                                <input type="text" class="form-control" id="c_state_country" name="c_state_country" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="c_postal_zip" class="form-label">Postal Code</label>
+                                <input type="text" class="form-control" id="c_postal_zip" name="c_postal_zip" required>
+                            </div>
+                        </div>
+                        
+                        <h3 class="section-title mt-4">Payment Method</h3>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="payment_method" id="credit_card" value="online" checked>
+                                <label class="form-check-label" for="credit_card">
+                                    Credit/Debit Card
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="payment_method" id="upi" value="upi">
+                                <label class="form-check-label" for="upi">
+                                    UPI
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="payment_method" id="cod" value="cod">
+                                <label class="form-check-label" for="cod">
+                                    Cash on Delivery
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Credit Card Details -->
+                        <div id="credit-card-details" class="payment-method">
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="card_number" class="form-label">Card Number</label>
+                                    <input type="text" class="form-control" id="card_number" name="card_number" placeholder="1234 5678 9012 3456">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="expiry_date" class="form-label">Expiry Date</label>
+                                    <input type="text" class="form-control" id="expiry_date" name="expiry_date" placeholder="MM/YY">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="cvv" class="form-label">CVV</label>
+                                    <input type="text" class="form-control" id="cvv" name="cvv" placeholder="123">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- UPI Details -->
+                        <div id="upi-details" class="payment-method">
+                            <div class="mb-3">
+                                <label for="upi_id" class="form-label">UPI ID</label>
+                                <input type="text" class="form-control" id="upi_id" name="upi_id" placeholder="yourname@upi">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-checkout mt-3">Place Order</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Order Summary -->
+            <div class="col-md-4">
+                <div class="checkout-card">
+                    <h3 class="section-title">Your Order</h3>
+                    
+                    <div class="cart-summary-item">
+                        <span>Product 1 x 2</span>
+                        <span>$40.00</span>
+                    </div>
+                    <div class="cart-summary-item">
+                        <span>Product 2 x 1</span>
+                        <span>$25.99</span>
+                    </div>
+                    <div class="cart-summary-item">
+                        <span>Shipping</span>
+                        <span>Free</span>
+                    </div>
+                    
+                    <div class="cart-summary-item cart-total mt-3 pt-3">
+                        <span>Total</span>
+                        <span>$65.99</span>
+                    </div>
+                </div>
+                
+                <div class="checkout-card">
+                    <h3 class="section-title">Secure Checkout</h3>
+                    <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+                    <div class="text-center">
+                        <img src="https://cdn-icons-png.flaticon.com/512/179/179319.png" height="40" class="me-2" alt="Visa">
+                        <img src="https://cdn-icons-png.flaticon.com/512/349/349228.png" height="40" class="me-2" alt="Mastercard">
+                        <img src="https://cdn-icons-png.flaticon.com/512/825/825454.png" height="40" alt="UPI">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show/hide payment method details based on selection
+            const paymentMethods = document.querySelectorAll('input[name="payment_method"]');
+            const paymentDetails = document.querySelectorAll('.payment-method');
+            
+            function updatePaymentMethod() {
+                // Hide all payment details first
+                paymentDetails.forEach(detail => {
+                    detail.style.display = 'none';
+                });
+                
+                // Show the selected payment method details
+                const selectedMethod = document.querySelector('input[name="payment_method"]:checked').value;
+                
+                if (selectedMethod === 'online') {
+                    document.getElementById('credit-card-details').style.display = 'block';
+                } else if (selectedMethod === 'upi') {
+                    document.getElementById('upi-details').style.display = 'block';
+                }
+                // No details needed for COD
+            }
+            
+            // Add event listeners to payment method radio buttons
+            paymentMethods.forEach(method => {
+                method.addEventListener('change', updatePaymentMethod);
+            });
+            
+            // Initialize payment method display
+            updatePaymentMethod();
+            
+            // Form validation
+            document.getElementById('checkout-form').addEventListener('submit', function(e) {
+                const selectedMethod = document.querySelector('input[name="payment_method"]:checked').value;
+                
+                if (selectedMethod === 'online') {
+                    const cardNumber = document.getElementById('card_number').value;
+                    const expiryDate = document.getElementById('expiry_date').value;
+                    const cvv = document.getElementById('cvv').value;
+                    
+                    if (!cardNumber || !expiryDate || !cvv) {
+                        e.preventDefault();
+                        alert('Please fill in all card details');
+                        return;
+                    }
+                    
+                    // Simple card validation
+                    if (cardNumber.replace(/\s/g, '').length !== 16) {
+                        e.preventDefault();
+                        alert('Please enter a valid card number');
+                        return;
+                    }
+                    
+                    if (cvv.length !== 3) {
+                        e.preventDefault();
+                        alert('Please enter a valid CVV');
+                        return;
+                    }
+                } else if (selectedMethod === 'upi') {
+                    const upiId = document.getElementById('upi_id').value;
+                    
+                    if (!upiId) {
+                        e.preventDefault();
+                        alert('Please enter your UPI ID');
+                        return;
+                    }
+                    
+                    if (!upiId.includes('@')) {
+                        e.preventDefault();
+                        alert('Please enter a valid UPI ID');
+                        return;
+                    }
+                }
+                
+                // If we get here, form is valid
+                alert('Order placed successfully!');
+                // In a real application, this would be handled by the backend
+            });
+        });
+    </script>
+</body>
+</html>

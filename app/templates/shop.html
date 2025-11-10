@@ -1,0 +1,634 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}">
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap4" />
+
+  <!-- Bootstrap CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #2A6F7F;
+      --primary-dark: #1D515E;
+      --secondary: #E2B091;
+      --light: #F8F9FA;
+      --dark: #212529;
+      --gray: #6C757D;
+      --light-gray: #E9ECEF;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+      background-color: #fff;
+    }
+    
+    h1, h2, h3, h4, h5, h6,
+    .section-title, .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    
+    /* Header & Navigation */
+    .custom-navbar {
+      background-color: white !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 15px 0;
+      transition: all 0.3s ease;
+    }
+    
+    .custom-navbar.scrolled {
+      padding: 10px 0;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+    
+    .navbar-brand {
+      font-size: 28px;
+      color: var(--primary) !important;
+    }
+    
+    .custom-navbar-nav .nav-link {
+      color: var(--dark) !important;
+      font-weight: 500;
+      padding: 0.5rem 1rem !important;
+      position: relative;
+    }
+    
+    .custom-navbar-nav .nav-link.active {
+      color: var(--primary) !important;
+    }
+    
+    .custom-navbar-nav .nav-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      background-color: var(--primary);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    
+    .custom-navbar-nav .nav-link:hover:after,
+    .custom-navbar-nav .nav-link.active:after {
+      width: 70%;
+    }
+    
+    .custom-navbar-cta .nav-link img {
+      filter: invert(33%) sepia(15%) saturate(1473%) hue-rotate(151deg) brightness(91%) contrast(87%);
+      transition: all 0.3s ease;
+    }
+    
+    .custom-navbar-cta .nav-link:hover img {
+      filter: invert(24%) sepia(10%) saturate(5370%) hue-rotate(151deg) brightness(91%) contrast(101%);
+    }
+    /* Fix for visible toggle icon on light navbar */
+.navbar-light .navbar-toggler {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(248,249,250,0.9) 0%, rgba(248,249,250,0.8) 100%);
+      padding: 80px 0 60px;
+      position: relative;
+    }
+    
+    .intro-excerpt h1 {
+      font-size: 2.5rem;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+    }
+    
+    /* Shop Section */
+    .shop-section {
+      padding: 80px 0;
+    }
+    
+    .product-card {
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      margin-bottom: 30px;
+      height: 100%;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
+    .product-thumbnail {
+      height: 250px;
+      object-fit: cover;
+      width: 100%;
+      transition: transform 0.5s ease;
+    }
+    
+    .product-card:hover .product-thumbnail {
+      transform: scale(1.05);
+    }
+    
+    .product-card-body {
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .product-title {
+      font-size: 1.2rem;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .product-price {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+    
+    .btn-add-to-cart {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    
+    .btn-add-to-cart:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    
+    /* Filter and Search Section */
+    .shop-controls {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      margin-bottom: 40px;
+    }
+    
+    .filter-title {
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    
+    .form-control {
+      border: 1px solid var(--light-gray);
+      border-radius: 6px;
+      padding: 10px 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.2rem rgba(42, 111, 127, 0.25);
+    }
+    
+    .form-select {
+      border: 1px solid var(--light-gray);
+      border-radius: 6px;
+      padding: 10px 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.2rem rgba(42, 111, 127, 0.25);
+    }
+    
+    /* Pagination */
+    .pagination {
+      margin-top: 50px;
+    }
+    
+    .page-link {
+      color: var(--primary);
+      border: 1px solid var(--light-gray);
+      padding: 10px 18px;
+      margin: 0 5px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    
+    .page-link:hover {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+    
+    .page-item.active .page-link {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+    
+    /* Empty State */
+    .shop-empty {
+      text-align: center;
+      padding: 80px 0;
+    }
+    
+    .shop-empty i {
+      font-size: 4rem;
+      color: var(--light-gray);
+      margin-bottom: 20px;
+    }
+    
+    .shop-empty h3 {
+      color: var(--gray);
+      margin-bottom: 15px;
+    }
+    
+    /* Footer */
+    .footer-section {
+      padding: 100px 0 0;
+      background-color: var(--primary-dark);
+      color: white;
+      position: relative;
+    }
+    
+    .sofa-img {
+      position: absolute;
+      bottom: 0;
+      right: 10%;
+      max-width: 300px;
+    }
+    
+    .subscription-form {
+      background: rgba(255,255,255,0.1);
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 50px;
+    }
+    
+    .subscription-form h3 {
+      color: white;
+    }
+    
+    .subscription-form .form-control {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      border-radius: 6px;
+    }
+    
+    .subscription-form .form-control::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+    
+    .subscription-form .btn-primary {
+      background: var(--secondary);
+      border-color: var(--secondary);
+      color: var(--dark);
+    }
+    
+    .footer-logo-wrap .footer-logo {
+      color: white !important;
+      font-size: 28px;
+    }
+    
+    .links-wrap ul li a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .links-wrap ul li a:hover {
+      color: white;
+    }
+    
+    .custom-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .custom-social a:hover {
+      background: var(--secondary);
+    }
+    
+    .copyright {
+      border-color: rgba(255,255,255,0.1) !important;
+      color: rgba(255,255,255,0.7);
+      padding: 20px 0;
+      margin-top: 50px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .intro-excerpt h1 {
+        font-size: 2rem;
+      }
+      
+      .hero {
+        padding: 60px 0 40px;
+      }
+      
+      .shop-controls {
+        padding: 20px;
+      }
+      
+      .product-thumbnail {
+        height: 200px;
+      }
+      
+      .sofa-img {
+        display: none;
+      }
+    }
+  </style>
+  
+  <title>Shop | Nova Furnishings</title>
+</head>
+
+<body>
+
+  <!-- Start Header/Navigation -->
+  <!-- Start Header/Navigation -->
+<nav class="custom-navbar navbar navbar-expand-md navbar-light" aria-label="Nova navigation bar">
+  <div class="container">
+    <a class="navbar-brand" href="index">Nova<span>.</span></a>
+
+    <!-- Toggler button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible nav items -->
+    <div class="collapse navbar-collapse" id="navbarsFurni">
+      <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="index">Home</a>
+        </li>
+        <li><a class="nav-link" href="shop">Shop</a></li>
+        <li><a class="nav-link" href="about">About us</a></li>
+        <li><a class="nav-link" href="services">Services</a></li>
+        <li><a class="nav-link" href="contact">Contact us</a></li>
+      </ul>
+
+      <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-3">
+        <li><a class="nav-link" href="signup"><img src="{% static 'images/user.svg' %}" alt="User"></a></li>
+        <li><a class="nav-link" href="cart"><img src="{% static 'images/cart.svg' %}" alt="Cart"></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- End Header/Navigation -->
+
+  <!-- End Header/Navigation -->
+
+  <!-- Start Hero Section -->
+  <div class="hero">
+    <div class="container">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-lg-6">
+          <div class="intro-excerpt">
+            <h1>Our Collection</h1>
+            <p class="mb-4">Discover beautifully crafted furniture that combines style, comfort, and functionality for your home.</p>
+          </div>
+        </div>
+        <div class="col-lg-6 text-lg-end">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-lg-end">
+              <li class="breadcrumb-item"><a href="index">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Shop</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Hero Section -->
+
+  <!-- Shop Controls -->
+  <!-- <div class="shop-controls">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4 mb-3 mb-md-0">
+          <h4 class="filter-title">Filter Products</h4>
+        </div>
+        <div class="col-md-4 mb-3 mb-md-0">
+          <input type="text" class="form-control" placeholder="Search products...">
+        </div>
+        <div class="col-md-4">
+          <select class="form-select">
+            <option selected>Sort by: Featured</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest First</option>
+            <option>Best Rated</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Shop Section -->
+  <!-- <div class="shop-section">
+    <div class="container">
+      {% if products %}
+      <div class="row">
+          {% for product in dd %}
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+          <div class="product-card">
+            <img src="{{ product.image.url }}" class="product-thumbnail" alt="{{ product.product_name }}">
+            <div class="product-card-body">
+              <h3 class="product-title">{{ product.product_name }}</h3>
+              <strong class="product-price">₹{{ product.product_price }}</strong>
+              <a href="{% url 'add_to_cart' product.id %}" class="btn btn-add-to-cart">
+                <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Pagination -->
+      <!-- <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav> -->
+      <!-- {% else %}
+      <div class="shop-empty">
+        <i class="fas fa-box-open"></i>
+        <h3>No products available</h3>
+        <p>Check back soon for new arrivals!</p>
+      </div>
+      {% endif %} -->
+    <!-- </div>
+  </div> --> 
+
+  <!-- Start Footer Section -->
+  <footer class="footer-section">
+    <div class="container relative">
+      <div class="sofa-img">
+        <img src="{% static 'images/sofa.png' %}" alt="Image" class="img-fluid">
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="subscription-form">
+            <h3 class="d-flex align-items-center"><span class="me-1"><img src="{% static 'images/envelope-outline.svg' %}" alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
+
+            <form action="#" class="row g-3">
+              <div class="col-auto">
+                <input type="text" class="form-control" placeholder="Enter your name">
+              </div>
+              <div class="col-auto">
+                <input type="email" class="form-control" placeholder="Enter your email">
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-primary">
+                  <span class="fa fa-paper-plane"></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-5 mb-5">
+        <div class="col-lg-4">
+          <div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo">Nova<span>.</span></a></div>
+          <p class="mb-4">We create beautiful, functional spaces with furniture that stands the test of time. Our pieces are crafted with care and designed for modern living.</p>
+
+          <ul class="list-unstyled custom-social">
+            <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+            <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+            <li><a href="#"><span class="fab fa-instagram"></span></a></li>
+            <li><a href="#"><span class="fab fa-linkedin"></span></a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="row links-wrap">
+            <div class="col-6 col-sm-6 col-md-3">
+              <ul class="list-unstyled">
+                <li><a href="about">About us</a></li>
+                <li><a href="services">Services</a></li>
+                <li><a href="blog">Blog</a></li>
+                <li><a href="contact">Contact us</a></li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-sm-6 col-md-3">
+              <ul class="list-unstyled">
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Knowledge base</a></li>
+                <li><a href="#">Live chat</a></li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-sm-6 col-md-3">
+              <ul class="list-unstyled">
+                <li><a href="#">Jobs</a></li>
+                <li><a href="#">Our team</a></li>
+                <li><a href="#">Leadership</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-sm-6 col-md-3">
+              <ul class="list-unstyled">
+                <li><a href="#">Nordic Chair</a></li>
+                <li><a href="#">Kruzo Aero</a></li>
+                <li><a href="#">Ergonomic Chair</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-top copyright">
+        <div class="row pt-4">
+          <div class="col-lg-6">
+            <p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved.</p>
+          </div>
+
+          <div class="col-lg-6 text-center text-lg-end">
+            <ul class="list-unstyled d-inline-flex ms-auto">
+              <li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer Section -->
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.custom-navbar');
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Simple search functionality
+    document.querySelector('input[type="text"]').addEventListener('keyup', function() {
+      const searchTerm = this.value.toLowerCase();
+      const products = document.querySelectorAll('.product-card');
+      
+      products.forEach(product => {
+        const title = product.querySelector('.product-title').textContent.toLowerCase();
+        if (title.includes(searchTerm)) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

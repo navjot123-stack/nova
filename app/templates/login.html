@@ -1,0 +1,155 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Login - Nova Furnishings</title>
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}">
+
+  <!-- Bootstrap & Fonts -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      background-color: var(--light-gray);
+    }
+    .login-hero {
+      padding: 100px 0;
+      background: linear-gradient(135deg, rgba(248,249,250,0.9) 0%, rgba(248,249,250,0.8) 100%), 
+                  url('{% static "images/hero-bg.jpg" %}');
+      background-size: cover;
+      background-position: center;
+    }
+    .login-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 40px;
+    }
+    .login-card h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+    }
+    .form-label {
+      font-weight: 500;
+      color: var(--dark);
+    }
+    .form-control {
+      border-radius: 6px;
+      padding: 12px;
+    }
+    .btn-primary {
+      background-color: var(--primary);
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    .login-card p a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .login-card p a:hover {
+      text-decoration: underline;
+    }
+    /* Fix for visible toggle icon on light navbar */
+.navbar-light .navbar-toggler {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <!-- Start Header/Navigation -->
+<nav class="custom-navbar navbar navbar-expand-md navbar-light" aria-label="Nova navigation bar">
+  <div class="container">
+    <a class="navbar-brand" href="index">Nova<span>.</span></a>
+
+    <!-- Toggler button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible nav items -->
+    <div class="collapse navbar-collapse" id="navbarsFurni">
+      <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="index">Home</a>
+        </li>
+        <li><a class="nav-link" href="shop">Shop</a></li>
+        <li><a class="nav-link" href="about">About us</a></li>
+        <li><a class="nav-link" href="services">Services</a></li>
+        <li><a class="nav-link" href="contact">Contact us</a></li>
+      </ul>
+
+      <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-3">
+        <li><a class="nav-link" href="signup"><img src="{% static 'images/user.svg' %}" alt="User"></a></li>
+        <li><a class="nav-link" href="cart"><img src="{% static 'images/cart.svg' %}" alt="Cart"></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- End Header/Navigation -->
+
+  <!-- Login Section -->
+  <section class="login-hero">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="login-card">
+            <h1 class="text-center">Login</h1>
+            <p class="text-center mb-4">Welcome back! Please login to continue.</p>
+            <form method="post" action="">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" name="user" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" required>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+            <p class="mt-3 text-center">Don’t have an account? 
+              <a href="signup">Sign up here</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-section">
+    <div class="container text-center py-3">
+      <p class="mb-0">© <script>document.write(new Date().getFullYear());</script> Nova Furnishings. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>
