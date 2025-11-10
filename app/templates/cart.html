@@ -397,6 +397,15 @@
         display: none;
       }
     }
+    /* Fix for visible toggle icon on light navbar */
+.navbar-light .navbar-toggler {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
   </style>
   
   <title>Your Cart | Nova Furnishings</title>
@@ -405,32 +414,37 @@
 <body>
 
   <!-- Start Header/Navigation -->
-  <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
-    <div class="container">
-      <a class="navbar-brand" href="index">Nova<span>.</span></a>
+ <!-- Start Header/Navigation -->
+<nav class="custom-navbar navbar navbar-expand-md navbar-light" aria-label="Nova navigation bar">
+  <div class="container">
+    <a class="navbar-brand" href="index">Nova<span>.</span></a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <!-- Toggler button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="navbarsFurni">
-        <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-          <li class="nav-item ">
-            <a class="nav-link" href="index">Home</a>
-          </li>
-          <li><a class="nav-link" href="shop">Shop</a></li>
-          <li><a class="nav-link" href="about">About us</a></li>
-          <li><a class="nav-link" href="services">Services</a></li>
-          <li><a class="nav-link" href="http://127.0.0.1:8000/contact">Contact us</a></li>
-        </ul>
+    <!-- Collapsible nav items -->
+    <div class="collapse navbar-collapse" id="navbarsFurni">
+      <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="index">Home</a>
+        </li>
+        <li><a class="nav-link" href="shop">Shop</a></li>
+        <li><a class="nav-link" href="about">About us</a></li>
+        <li><a class="nav-link" href="services">Services</a></li>
+        <li><a class="nav-link" href="contact">Contact us</a></li>
+      </ul>
 
-        <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-          <li><a class="nav-link" href="#"><img src="{% static 'images/user.svg' %}"></a></li>
-          <li><a class="nav-link" href="cart"><img src="{% static 'images/cart.svg' %}"></a></li>
-        </ul>
-      </div>
+      <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-3">
+        <li><a class="nav-link" href="signup"><img src="{% static 'images/user.svg' %}" alt="User"></a></li>
+        <li><a class="nav-link" href="cart"><img src="{% static 'images/cart.svg' %}" alt="Cart"></a></li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
+<!-- End Header/Navigation -->
+
   <!-- End Header/Navigation -->
 
   <!-- Start Hero Section -->
