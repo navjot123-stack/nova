@@ -1,0 +1,13 @@
+pip install django
+django-admin strtproject nova .
+python manage.py startapp app
+python manage.py runserver
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuer
+
+deployment
+
+pip install -r requirements.txt
+
+gunicorn nova.wsgi
