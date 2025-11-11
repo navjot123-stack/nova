@@ -11,3 +11,10 @@ deployment
 pip install -r requirements.txt
 
 gunicorn nova.wsgi
+
+
+Django==5.1
+gunicorn
+psycopg2-binary
+dj-database-url
+whitenoise
