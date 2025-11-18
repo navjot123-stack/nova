@@ -17,11 +17,7 @@ SECRET_KEY = 'django-insecure-$hl6u(6jzo-k$7q!hojb6uxd%5rq2zq!-@ag@-^zkk70spbw4n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
 ALLOWED_HOSTS = ['project-greenpanatry-1.onrender.com', 'localhost', '127.0.0.1', '.onrender.com']
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','nova-1-0n1x.onrender.com']
-
 
 
 # Application definition
