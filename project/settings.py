@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -44,6 +45,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'project.urls'
 
@@ -116,7 +119,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'  # ✅ YEH LINE ADD KAREIN
 
 # Additional static files locations (agar aapke paas static folder hai)
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    # BASE_DIR / "static",
 ]
 
 # Default primary key field type
@@ -129,6 +132,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # CSRF Protection for Render
 CSRF_TRUSTED_ORIGINS = [
-    'https://project-greenpanatry-1.onrender.com',
+    'https://nova-1-0n1x.onrender.com',
     'https://*.onrender.com',
 ]
